@@ -1,0 +1,51 @@
+body, html {
+    height: 100%;
+}
+
+.bg {
+    /* The image used */
+    background-image: url("../images/websiteBG.png");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.profileImg {
+    margin-top: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 12%;
+    border-radius: 50%;
+}
+.xxl {
+    font-size: 5rem;
+    line-height: 1;
+    font-family: 'Brush Script MT', cursive;
+    text-shadow: -1px 1px 0 #000,
+    2px 2px 0 #000,
+    2px -2px 0 #000,
+    -2px -2px 0 #000;
+}
+.xl {
+    font-size: 3rem;
+    line-height: 1;
+    font-family: 'Brush Script MT', cursive;
+    text-shadow: -1px 1px 0 #000,
+    1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000;
+}
+.homepageContainerBG {
+    background: url("../images/HomePageBanner.png");
+    background-position: center;
+    background-size: cover;
+}
+.bgColor{
+    background-color: aliceblue;
+}
