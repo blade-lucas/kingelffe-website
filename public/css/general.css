@@ -2,9 +2,19 @@ body, html {
     height: 100%;
 }
 
-.bg {
+.profileImg {
+    margin-top: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 12%;
+    border-radius: 50%;
+}
+
+.bgImageHome {
     /* The image used */
-    background-image: url("../images/websiteBG.png");
+    background-image: url("../images/grayBG.png");
+
 
     /* Full height */
     height: 100%;
@@ -15,14 +25,17 @@ body, html {
     background-repeat: no-repeat;
     background-size: cover;
 }
-.profileImg {
-    margin-top: 5px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 12%;
-    border-radius: 50%;
+
+.heroServer {
+    /* The image used */
+    background-image: url("../images/serverHero.png");
+
+    /* Center and scale the image nicely */
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
 .xxl {
     font-size: 5rem;
     line-height: 1;
@@ -49,3 +62,34 @@ body, html {
 .bgColor{
     background-color: aliceblue;
 }
+
+.footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+}
+
+.line{
+    width: 1px;
+    height: auto;
+    background: white;
+}
+
+.previous {
+    background-color: #f1f1f1;
+    color: black;
+}
+
+.next {
+    background-color: #04AA6D;
+    color: white;
+}
+
+.roundButton {
+    border-radius: 50%;
+}
+

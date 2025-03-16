@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,39 +15,45 @@
     <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary justify-center">
         <ul class="nav justify-content-center">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                <a class="nav-link {{ request()->is("/") ? "bg-gray-200 rounded" : 'bg-body-tertiary' }}" aria-current="page" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="about">About Kingelffe</a>
+                <a class="nav-link {{ request()->is("about") ? "bg-gray-200 rounded" : 'bg-body-tertiary' }}" href="/about">About Kingelffe</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="gallery">Gallery</a>
+                <a class="nav-link {{ request()->is("gallery") ? "bg-gray-200 rounded" : 'bg-body-tertiary' }}" href="/gallery">Gallery</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="server">King's Court Server</a>
+                <a class="nav-link {{ request()->is("server") ? "bg-gray-200 rounded" : 'bg-body-tertiary' }}" href="/server">King's Court Server</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="downloads">Downloads</a>
+                <a class="nav-link {{ request()->is("downloads") ? "bg-gray-200 rounded" : 'bg-body-tertiary' }}" href="/downloads">Downloads</a>
             </li>
         </ul>
     </nav>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body class="bg">
+<body class="bgImage h-full">
 
-    <?php echo $slot ?>
+    {{ $slot }}
 
 </body>
 
-<footer>
-    <nav class="navbar bg-body-tertiary justify-center">
-        <div class="nav navbar-expand-lg">
-            <img src="{{ asset('images/logos/youtubeLogoBlack.png') }}" alt="Youtube" height="25px" width="25px" style="margin-right: 10px">
-            <img src="{{ asset('images/logos/twitchLogoBlack.png') }}" alt="Twitch" height="25px" width="25px" style="margin-right: 10px">
-            <img src="{{ asset('images/logos/twitterLogoBlack.png') }}" alt="Twitter" height="25px" width="25px" style="margin-right: 10px">
-            <img src="{{ asset('images/logos/instagramLogoBlack.png') }}" alt="Instagram" height="18px" width="23px" style="margin-right: 10px">
-            <img src="{{ asset('images/logos/discordLogoBlack.png') }}" alt="Discord" height="25px" width="25px" style="margin-right: 10px">
-        </div>
-    </nav>
+<footer class="footer">
+    <div class="navbar navbar-expand-lg bg-body-tertiary justify-center">
+        <img src="{{ asset('images/logos/youtube.png') }}" alt="Youtube" height="25px" width="25px" style="margin-right: 10px">
+        <img src="{{ asset('images/logos/twitch.png') }}" alt="Twitch" height="25px" width="25px" style="margin-right: 10px">
+        <img src="{{ asset('images/logos/twitter.png') }}" alt="Twitter" height="25px" width="25px" style="margin-right: 10px">
+        <img src="{{ asset('images/logos/instagram.png') }}" alt="Instagram" height="25px" width="25px" style="margin-right: 10px">
+        <img src="{{ asset('images/logos/discord.png') }}" alt="Discord" height="25px" width="25px" style="margin-right: 10px">
+    </div>
 </footer>
 </html>
+
+<!--
+<a href="https://www.flaticon.com/free-icons/instagram-logo" title="instagram logo icons">Instagram logo icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/brands-and-logotypes" title="brands and logotypes icons">Brands and logotypes icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/social-network" title="social network icons">Social network icons created by riajulislam - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/twitch" title="twitch icons">Twitch icons created by Enamo Studios - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/discord" title="discord icons">Discord icons created by Freepik - Flaticon</a>
+-->

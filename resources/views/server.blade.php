@@ -22,10 +22,14 @@
         <hr class="mt-5">
 
         <div class="row mt-3">
-            <div><h1 class="text-center xl dark:text-gray-400">Singleplayer Worlds</h1></div>
-            <p class="text-center text-lg mb-3">
-                Placeholder
+            <div><h1 class="text-center xl dark:text-gray-400">King's Court Wiki</h1></div>
+            <p class="text-center text-lg mb-3" style="padding-right: 50px; padding-left: 50px">
+                Need some additional info on how to join the server? How about information on one of our plugins? How to open a shop? All information on the King's Court server can be found here!
             </p>
+            <div class="mt-5 text-center">
+                <a href="/wiki/welcome" class="btn btn-primary">King's Court Wiki</a>
+            </div>
+
         </div>
 
         <hr class="mt-5">
