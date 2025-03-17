@@ -11,45 +11,21 @@
 
     <h1 class="text-4xl font-black text-center text-white pb-3">Dynmap</h1>
     <div class="flex justify-center pt-3 pb-24">
-        <iframe src="https://dynmap.kingelffe.com/" title="Dynmap" style="width: 1000px;height: 500px"></iframe>
+        <iframe src="https://dynmap.wumboclip.com/" title="Dynmap" style="width: 1000px;height: 500px"></iframe>
     </div>
     <div class="h-full">
         <h1 class="text-4xl font-black text-center text-white p-3">Moderators</h1>
-        <div class="flex gap-16 bg-slate-500 h-[60%] p-3 items-center justify-center">
-            <a href="#" class="previous roundButton" style="text-decoration: none; display: inline-block; padding: 8px 16px;">&#8249;</a>
-            <div class="h-64 w-44">
-                <h1 class="text-white font-semibold text-2xl text-center" style="text-shadow: black 1px 0 10px;">Utahraptorfun</h1>
-                <img src="{{ asset('images/avatars/utahAvatar.png') }}" alt="utah">
-                <h1 class="text-white font-bold text-xl text-center" style="text-shadow: black 1px 0 10px;">Moderator</h1>
-            </div>
-
-            <div class="h-64 w-44">
-                <h1 class="text-white font-semibold text-2xl text-center" style="text-shadow: black 1px 0 10px;">PinkedDuck</h1>
-                <img src="{{ asset('images/avatars/pinkedduckAvatar.png') }}" alt="pinkedduck">
-                <h1 class="text-white font-bold text-xl text-center" style="text-shadow: black 1px 0 10px;">Admin</h1>
-            </div>
-
-            <div class="h-80 w-48">
-                <h1 class="text-white font-semibold text-2xl text-center pb-2" style="text-shadow: black 1px 0 10px;">Kingelffe</h1>
-                <img src="{{ asset('images/avatars/kingelffeAvatar.png') }}" alt="kingelffe" class="bg-slate-600 rounded p-2">
-                <h1 class="text-white font-bold text-xl text-center pt-2" style="text-shadow: black 1px 0 10px;">Owner</h1>
-            </div>
-
-            <div class="h-64 w-44">
-                <h1 class="text-white font-semibold text-2xl text-center" style="text-shadow: black 1px 0 10px;">JBMDeck</h1>
-                <img src="{{ asset('images/avatars/jbmdeckAvatar.png') }}" alt="jbmdeck">
-                <h1 class="text-white font-bold text-xl text-center" style="text-shadow: black 1px 0 10px;">Admin</h1>
-            </div>
-
-            <div class="h-64 w-44">
-                <h1 class="text-white font-semibold text-2xl text-center" style="text-shadow: black 1px 0 10px;">DixieRoseYT</h1>
-                <img src="{{ asset('images/avatars/dixieAvatar.png') }}" alt="dixie">
-                <h1 class="text-white font-bold text-xl text-center" style="text-shadow: black 1px 0 10px;">Moderator</h1>
-            </div>
-
-            <a href="#" class="next roundButton" style="text-decoration: none; display: inline-block; padding: 8px 16px;">&#8250;</a>
+        <div class="flex gap-16 bg-slate-500 h-[60%] p-3 items-center justify-center" id="users-container">
+            <!-- Users will be dynamically injected here by AJAX -->
+            @include('partials.minecraftUsers', ['usersToShow' => $usersToShow])
         </div>
-        <h1 class="text-center text-white font-semibold text-2xl p-5">All Staff members are listed here, Please respect what they say!</h1>
+
+        <div class="flex justify-center gap-4 p-3">
+            <!-- Previous Button -->
+            <a href="javascript:void(0);" class="previous roundButton" data-offset="{{ $prevOffset }}" style="text-decoration: none; display: inline-block; padding: 8px 16px;">&#8249;</a>
+            <!-- Next Button -->
+            <a href="javascript:void(0);" class="next roundButton" data-offset="{{ $nextOffset }}" style="text-decoration: none; display: inline-block; padding: 8px 16px;">&#8250;</a>
+        </div>
     </div>
 
     <div class="pb-24">
@@ -94,3 +70,31 @@
     </div>
 
 </x-baseLayout>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Handle the Next and Previous buttons
+        document.querySelectorAll('.previous, .next').forEach(function (button) {
+            button.addEventListener('click', function () {
+                let offset = button.getAttribute('data-offset');
+
+                // Make the AJAX request to fetch the new users
+                fetch(`/serverV2/paginate?currentOffset=${offset}`, {
+                    method: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                    },
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Update the user list
+                        document.getElementById('users-container').innerHTML = data.usersToShow;
+                        // Update the next and previous offsets
+                        document.querySelector('.next').setAttribute('data-offset', data.nextOffset);
+                        document.querySelector('.previous').setAttribute('data-offset', data.prevOffset);
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        });
+    });
+</script>

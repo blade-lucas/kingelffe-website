@@ -1,7 +1,31 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ServerController;
+use App\Http\Controllers\SocialsController;
+use App\Http\Controllers\WikiController;
 use Illuminate\Support\Facades\Route;
 
+//V2 pages
+Route::get('/homepageV2', [HomeController::class, 'showHomepage'])->name('/');
+Route::get('/aboutV2', [AboutController::class, 'showAbout'])->name('about');
+Route::get('/galleryV2', [GalleryController::class, 'showGallery'])->name('gallery');
+Route::get('/serverV2', [ServerController::class, 'showServer'])->name('server');
+Route::get('/serverV2/paginate', [ServerController::class, 'paginateModerators']);
+Route::get('/downloadsV2', [DownloadController::class, 'showDownload'])->name('downloads');
+Route::get('/wikiV2', [WikiController::class, 'showWiki'])->name('wiki');
+
+//Socials
+Route::get('/youtube', [SocialsController::class, 'youtubeRedirect'])->name('youtube');
+Route::get('/twitch', [SocialsController::class, 'twitchRedirect'])->name('twitch');
+Route::get('/twitter', [SocialsController::class, 'twitterRedirect'])->name('twitter');
+Route::get('/instagram', [SocialsController::class, 'instagramRedirect'])->name('instagram');
+Route::get('/discord', [SocialsController::class, 'discordRedirect'])->name('discord');
+
+//TODO Refactor all routes below
 Route::get('/', function () {
     return view('homepage');
 });
@@ -102,50 +126,4 @@ Route::get('/wiki/getting-server-roles', function () {
 //experimental wiki route
 Route::get('/wiki/{category}', function () {
     return view('Wiki/tutorials/getting-server-roles');
-});
-
-//V2 pages
-Route::get('/homepageV2', function () {
-    return view('V2/homepageV2');
-});
-
-Route::get('/aboutV2', function () {
-    return view('V2/aboutV2');
-});
-
-Route::get('/galleryV2', function () {
-    return view('V2/galleryV2');
-});
-
-Route::get('/serverV2', function () {
-    return view('V2/serverV2');
-});
-
-Route::get('/downloadsV2', function () {
-    return view('V2/downloadsV2');
-});
-
-Route::get('wikiV2', function () {
-    return view('V2/wikiV2');
-});
-
-//Redirects to external sites
-Route::get('youtube', function () {
-    return Redirect('https://www.youtube.com/kingelffe');
-});
-
-Route::get('twitch', function () {
-    return Redirect('https://www.twitch.tv/kingelffe');
-});
-
-Route::get('twitter', function () {
-    return Redirect('https://x.com/kingelffe');
-});
-
-Route::get('instagram', function () {
-    return Redirect('https://www.instagram.com/kingelffeyt/');
-});
-
-Route::get('discord', function () {
-    return Redirect('https://dsc.gg/kingelffe');
 });

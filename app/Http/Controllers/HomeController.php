@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class WikiController extends Controller
+class HomeController extends Controller
 {
-    public function showWiki() : View
+    public function showHomepage() : View
     {
-        return view('wikiV2');
+        return view('V2.homepageV2');
     }
 }

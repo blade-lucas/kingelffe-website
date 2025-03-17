@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class WikiController extends Controller
+class GalleryController extends Controller
 {
-    public function showWiki() : View
+    public function showGallery() : View
     {
-        return view('wikiV2');
+        return view('V2.galleryV2');
     }
 }
