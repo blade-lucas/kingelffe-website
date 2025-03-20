@@ -1,7 +1,7 @@
 <x-baseLayout>
-    <section class="py-3 h-full">
+    <section class="py-3 flex-grow">
         <h1 class="text-4xl font-black text-center text-white p-3">King's Court Viewer Server</h1>
-        <div class="flex heroServer gap-4 h-[70%] pt-3 justify-end items-end p-5">
+        <div class="flex heroServer gap-4 h-[60vh] pt-3 justify-end items-end p-5">
             <h1 class="text-3xl font-black text-white" style="text-shadow: black 1px 0 10px;">Welcome to the King's Court</h1>
         </div>
         <div class="flex justify-center pt-6">
@@ -13,7 +13,7 @@
     <div class="flex justify-center pt-3 pb-24">
         <iframe src="https://dynmap.wumboclip.com/" title="Dynmap" style="width: 1000px;height: 500px"></iframe>
     </div>
-    <div class="h-full">
+    <div class="h-128">
         <h1 class="text-4xl font-black text-center text-white p-3">Moderators</h1>
         <div class="flex gap-16 bg-slate-500 h-[60%] p-3 items-center justify-center" id="users-container">
             <!-- Users will be dynamically injected here by AJAX -->
@@ -30,42 +30,20 @@
 
     <div class="pb-24">
         <h1 class="text-4xl font-black text-center text-white p-3">Server Wiki</h1>
+
         <div class="flex justify-center gap-10 pt-8 pb-8">
-            <a href="#" class="hover:transition duration-300 hover:scale-105">
-                <div class="h-72 w-64 bg-slate-400 border-black border-2 rounded">
-                    <img src="{{ asset('images/background.png') }}" alt="about">
-                    <div class="items-center justify-center pt-12">
-                        <h1 class="text-white text-2xl text-center font-semibold" style="text-shadow: black 1px 0 10px;">Server Info</h1>
-                    </div>
-                </div>
-            </a>
-            <a href="#" class="hover:transition duration-300 hover:scale-105">
-                <div class="h-72 w-64 bg-slate-400 border-black border-2 rounded">
-                    <img src="{{ asset('images/background.png') }}" alt="plugins">
-                    <div class="items-center justify-center pt-12">
-                        <h1 class="text-white text-2xl text-center font-semibold" style="text-shadow: black 1px 0 10px;">Plugins</h1>
-                    </div>
-                </div>
-            </a>
-            <a href="#" class="hover:transition duration-300 hover:scale-105">
-                <div class="h-72 w-64 bg-slate-400 border-black border-2 rounded">
-                    <img src="{{ asset('images/background.png') }}" alt="commands">
-                    <div class="items-center justify-center pt-12">
-                        <h1 class="text-white text-2xl text-center font-semibold" style="text-shadow: black 1px 0 10px;">Commands</h1>
-                    </div>
-                </div>
-            </a>
-            <a href="#" class="hover:transition duration-300 hover:scale-105">
-                <div class="h-72 w-64 bg-slate-400 border-black border-2 rounded">
-                    <img src="{{ asset('images/background.png') }}" alt="tutorials">
-                    <div class="items-center justify-center pt-12">
-                        <h1 class="text-white text-2xl text-center font-semibold" style="text-shadow: black 1px 0 10px;">Tutorials</h1>
-                    </div>
-                </div>
-            </a>
+            @foreach ([
+                ['url' => '/wikiV2#serverInfo', 'img' => 'background.png', 'title' => 'Server Info'],
+                ['url' => '/wikiV2#plugins', 'img' => 'background.png', 'title' => 'Plugins'],
+                ['url' => '/wikiV2#commands', 'img' => 'background.png', 'title' => 'Commands'],
+                ['url' => '/wikiV2#tutorials', 'img' => 'background.png', 'title' => 'Tutorials'],
+            ] as $item)
+                <x-wikiCard :url="$item['url']" :img="$item['img']" :title="$item['title']" />
+            @endforeach
         </div>
+
         <div class="flex justify-center">
-            <a href="/wiki/welcome" class="bg-blue-500 text-white text-xl font-semibold px-8 py-2 rounded border-black border-2 hover:font-bold hover:bg-blue-400 hover:border-white">Server Wiki</a>
+            <a href="/wikiV2#serverInfo" class="bg-blue-500 text-white text-xl font-semibold px-8 py-2 rounded border-black border-2 hover:font-bold hover:bg-blue-400 hover:border-white">Server Wiki</a>
         </div>
     </div>
 

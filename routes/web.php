@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServerController;
 use App\Http\Controllers\SocialsController;
 use App\Http\Controllers\WikiController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 //V2 pages
@@ -46,84 +47,17 @@ Route::get('/downloads', function () {
     return view('downloads');
 });
 
-//Wiki Routes
-Route::get('/wiki/welcome', function () {
-    return view('Wiki/serverInfo/welcome');
-});
-
-Route::get('/wiki/about-the-server', function () {
-    return view('Wiki/serverInfo/about-the-server');
-});
-
-Route::get('/wiki/rules', function () {
-    return view('Wiki/serverInfo/rules');
-});
-
-Route::get('/wiki/plugins', function () {
-    return view('Wiki/serverInfo/plugins');
-});
-
-Route::get('/wiki/support', function () {
-    return view('Wiki/serverInfo/support');
-});
-
-Route::get('/wiki/plugins-overview', function () {
-    return view('Wiki/plugins/overview');
-});
-
-Route::get('/wiki/vanilla-tweaks', function () {
-    return view('Wiki/plugins/vanillaTweaks');
-});
-
-Route::get('/wiki/essentialsx', function () {
-    return view('Wiki/plugins/essentialsX');
-});
-
-Route::get('/wiki/ez-chest-shop', function () {
-    return view('Wiki/plugins/ezChestShop');
-});
-
-Route::get('/wiki/geyser', function () {
-    return view('Wiki/plugins/geyser');
-});
-
-Route::get('/wiki/xclaim', function () {
-    return view('Wiki/plugins/xclaim');
-});
-
-Route::get('/wiki/moderation', function () {
-    return view('Wiki/plugins/moderation');
-});
-
-Route::get('/wiki/basic-commands', function () {
-    return view('Wiki/commands/basic');
-});
-
-Route::get('/wiki/economy-commands', function () {
-    return view('Wiki/commands/economy');
-});
-
-Route::get('/wiki/support-commands', function () {
-    return view('Wiki/commands/support');
-});
-
-Route::get('/wiki/how-to-join', function () {
-    return view('Wiki/tutorials/how-to-join');
-});
-
-Route::get('/wiki/making-a-shop', function () {
-    return view('Wiki/tutorials/making-a-shop');
-});
-
-Route::get('/wiki/land-claims', function () {
-    return view('Wiki/tutorials/land-claims');
-});
-
-Route::get('/wiki/getting-server-roles', function () {
-    return view('Wiki/tutorials/getting-server-roles');
-});
-
 //experimental wiki route
 Route::get('/wiki/{category}', function () {
     return view('Wiki/tutorials/getting-server-roles');
+});
+
+Route::get('/get-wiki-entries/{category}', function ($category) {
+    $wikiEntries = DB::table('wiki')
+        ->where('wiki_category', $category)
+        ->get();
+    if ($wikiEntries->isEmpty()) {
+        return response()->json(['error' => 'No entries found for this category.'], 404);
+    }
+    return response()->json($wikiEntries);
 });

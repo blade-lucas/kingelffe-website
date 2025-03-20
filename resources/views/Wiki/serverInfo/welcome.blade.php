@@ -1,3 +1,0 @@
-<x-wikiLayout>
-
-</x-wikiLayout>

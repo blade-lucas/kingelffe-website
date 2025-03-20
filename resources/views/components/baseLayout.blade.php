@@ -33,14 +33,14 @@
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body class="bg-gradient-to-r from-slate-500 to-slate-800 h-full">
-
-<!--Content-->
-{{ $slot }}
-
+<body class="bg-gradient-to-r from-slate-500 to-slate-800 h-full flex flex-col min-h-screen">
+    <main class="flex-grow">
+        <!--Content-->
+        {{ $slot }}
+    </main>
 </body>
 
-<footer class="footer">
+<footer class="footer mt-auto">
     <div class="bg-slate-600 flex p-2" style="border-top-width: 3px; border-top-color: black;">
         <p>&copy;Copyright 2024</p>
     </div>

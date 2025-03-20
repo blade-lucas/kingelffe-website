@@ -1,6 +1,10 @@
-<div class="flex flex-col p-2 bg-white h-40 w-40 border-black border-2 rounded">
-    <div class="flex-1">
-        <h1 class="text-center text-lg font-semibold p-2">{{ $title }}</h1>
+<a href="{{ $url }}" class="hover:transition duration-300 hover:scale-105">
+    <div class="h-72 w-64 bg-slate-400 border-black border-2 rounded">
+        <img src="{{ asset('images/' . $img) }}" alt="{{ $title }}">
+        <div class="items-center justify-center pt-12">
+            <h1 class="text-white text-2xl text-center font-semibold" style="text-shadow: black 1px 0 10px;">
+                {{ $title }}
+            </h1>
+        </div>
     </div>
-    <a href="#" class="bg-blue-500 py-2 border-black border-2 rounded text-center text-white font-semibold">Read</a>
-</div>
+</a>

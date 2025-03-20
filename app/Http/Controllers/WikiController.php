@@ -10,6 +10,6 @@ class WikiController extends Controller
 {
     public function showWiki() : View
     {
-        return view('wikiV2');
+        return view('V2.wikiV2');
     }
 }
